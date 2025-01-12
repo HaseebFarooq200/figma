@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Flex, message, Upload } from 'antd';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { Modal, message, Upload, Button, Avatar } from 'antd';
 
 const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -24,6 +22,16 @@ const beforeUpload = (file) => {
 const Createagent = () => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     const handleChange = (info) => {
         if (info.file.status === 'uploading') {
             setLoading(true);
@@ -150,7 +158,7 @@ const Createagent = () => {
                                     <label htmlFor="first-name" className="block text-sm/6 font-medium text-gray-900">
                                         Generate Avatar with AI
                                     </label>
-                                    <div className="mt-2">
+                                    <div className="mt-2" onClick={showModal}>
                                         <Upload
                                             name="avatar"
                                             listType="picture-circle"
@@ -203,6 +211,47 @@ const Createagent = () => {
                     </div>
                 </form>
             </div>
+            <Modal
+                open={isModalOpen}
+                onCancel={handleCancel}
+                footer={[
+                    <Button
+                        key="ok"
+                        type="primary"
+                        onClick={handleOk}
+                        className="flex mx-auto mt-4"
+                    >
+                        Continue
+                    </Button>,
+                ]}
+            >
+                <h3 className="font-bold text-[18px]">Choose Avatar</h3>
+                <p className='mt-1 text-[#000000] text-[12px]'>Select and choose avatar of your choice and add it on your profile</p>
+                <div className='mt-2 flex flex-wrap '>
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+                </div>
+            </Modal>
         </div>
     );
 }
